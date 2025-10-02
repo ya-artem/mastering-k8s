@@ -38,3 +38,4 @@
 Питання:
 1) Ци виконання команди `sudo kubebuilder/bin/kubectl taint nodes <node-name> node.cloudprovider.kubernetes.io/uninitialized-` вважається правильним шляхом ?
 2) Чи правильно тут встановлено назву кластеру  `--cluster-name=kubernetes` ?
+3) Чи треба щось робити із setup.sh ?
