@@ -8,7 +8,7 @@ spec:
   containers:
   - name: kube-scheduler
     image: registry.k8s.io/kube-scheduler:v1.30.0
-    commad:
+    command:
     - kube-scheduler
     - --kubeconfig=/etc/kubernetes/kubeconfig
     - --leader-elect=false
