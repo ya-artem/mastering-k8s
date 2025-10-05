@@ -119,7 +119,7 @@ generate_configs() {
 }
 EOF
 
-cat <<EOF | sudo tee /etc/containerd/config.toml
+    cat <<EOF | sudo tee /etc/containerd/config.toml
 version = 3
 
 [grpc]
@@ -215,9 +215,12 @@ start() {
 
 
 # todo check run on containerd , not docker one ?
-    export PATH=$PATH:/opt/cni/bin:kubebuilder/bin
-    sudo PATH=$PATH:/opt/cni/bin:/usr/sbin /opt/cni/bin/containerd -c /etc/containerd/config.toml \
-    2>&1 | tee -a /var/log/kubernetes/containerd.log &
+    # export PATH=$PATH:/opt/cni/bin:kubebuilder/bin
+    # sudo PATH=$PATH:/opt/cni/bin:/usr/sbin /opt/cni/bin/containerd -c /etc/containerd/config.toml \
+    # 2>&1 | tee -a /var/log/kubernetes/containerd.log &
+
+     export PATH=$PATH:/opt/cni/bin:kubebuilder/bin
+     sudo PATH=$PATH:/opt/cni/bin:/usr/sbin /opt/cni/bin/containerd -c /etc/containerd/config.toml 2>&1 | tee -a /var/log/kubernetes/containerd.log &
 
       # Set up kubelet kubeconfig
     sudo cp /root/.kube/config /var/lib/kubelet/kubeconfig
