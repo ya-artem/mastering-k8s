@@ -231,28 +231,6 @@ start() {
     sudo kubebuilder/bin/kubectl create sa default 2>/dev/null || true
     sudo kubebuilder/bin/kubectl create configmap kube-root-ca.crt --from-file=ca.crt=/tmp/ca.crt -n default 2>/dev/null || true
 
-    sleep 5;
-    #  todo fix this check
-    # for i in {1..60}; do
-    #   if [ -S /run/containerd/containerd.sock ]; then
-    #       echo "✅ containerd socket is available."
-    #       break
-    #   fi
-    #   if ! pgrep -x "containerd" > /dev/null; then
-    #       echo "⚠️ containerd process not running, trying again..."
-    #       sleep 1
-    #   fi
-    # done
-
-    # if [ ! -S /run/containerd/containerd.sock ]; then
-    # echo "❌ containerd did not start properly. Exiting."
-    # exit 1
-    # fi
-
-    # echo "➡️ Continuing script execution..."
-
-
-
     if ! is_running "kubelet"; then
         echo "➡️➡️➡️➡️Starting kubelet... ➡️➡️➡️"
         sudo PATH=$PATH:/opt/cni/bin:/usr/sbin kubebuilder/bin/kubelet \
