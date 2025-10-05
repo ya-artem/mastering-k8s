@@ -175,7 +175,7 @@ containerRuntimeEndpoint: "unix:///run/containerd/containerd.sock"
 staticPodPath: "/etc/kubernetes/manifests"
 # tlsCertFile: /var/lib/kubelet/pki/kubelet.crt
 # tlsPrivateKeyFile: /var/lib/kubelet/pki/kubelet.key
-maxPods: 10
+maxPods: 4
 cgroupDriver: cgroupfs
 providerID: ""
 EOF
@@ -219,8 +219,8 @@ start() {
     # sudo PATH=$PATH:/opt/cni/bin:/usr/sbin /opt/cni/bin/containerd -c /etc/containerd/config.toml \
     # 2>&1 | tee -a /var/log/kubernetes/containerd.log &
 
-     export PATH=$PATH:/opt/cni/bin:kubebuilder/bin
-     sudo PATH=$PATH:/opt/cni/bin:/usr/sbin /opt/cni/bin/containerd -c /etc/containerd/config.toml 2>&1 | tee -a /var/log/kubernetes/containerd.log &
+    export PATH=$PATH:/opt/cni/bin:kubebuilder/bin
+    sudo PATH=$PATH:/opt/cni/bin:/usr/sbin /opt/cni/bin/containerd -c /etc/containerd/config.toml &
 
       # Set up kubelet kubeconfig
     sudo cp /root/.kube/config /var/lib/kubelet/kubeconfig
